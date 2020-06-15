@@ -327,9 +327,7 @@ where $\Omega=\{1,\ldots,6\}^\mathbb{N}$. Then the family $(\mathcal{E}_i)_{i\in
     \begin{enumerate}[(a)]
         \item Let $I$ be finite. If $\Omega\in\mathcal{E}_i$ for each $i$, then $(\mathcal{E}_i)_{i\in I}$ is independent if and only if $(E_i)_{i\in I}$ is independent for any choice of $E_i\in\mathcal{E}_i,i\in I$.
         
-        \item $(\mathcal{E}_i)_{i\in I}$ is independent if and only if $(\mathcal{E}_j)_{j\in J}$ is independent for all $J\subseteq I$.
-        
-        % \item If $(\mathcal{E}_i\cup\{\emptyset\})$ is $\cap$-closed for each $i$, then $(\mathcal{E}_i)_{i\in I}$ is independent if and only if $(\sigma(\mathcal{E}_i))_{i\in I}$ is independent.
+        \item If $(\mathcal{E}_i\cup\{\emptyset\})$ is $\cap$-closed for each $i$, then $(\mathcal{E}_i)_{i\in I}$ is independent if and only if $(\sigma(\mathcal{E}_i))_{i\in I}$ is independent.
         
         % \item Let $K$ be an arbitrary set and let $(I_k)_{k\in K}$ be mutually disjoint subsets of $I$. If $(\mathcal{E}_i)_{i\in I}$ is independent, then $\left(\bigcup_{i\in I_k}\mathcal{E}_i\right)_{k\in K}$ is also independent.
     \end{enumerate}
@@ -340,25 +338,23 @@ where $\Omega=\{1,\ldots,6\}^\mathbb{N}$. Then the family $(\mathcal{E}_i)_{i\in
     \begin{enumerate}[(a)]
         \item The forward implication is obvious from the definition. To prove the backward implication, for $J\subseteq I$ and $j\in I\setminus J$, choose $E_j=\Omega$.
         
-        \item This is just \ref{independence of classes of events}.
+        \item The backward implication is obvious. Let us now prove the forward implication.
         
-        % \item The backward implication is obvious. Let us now prove the forward implication.
+        First, we claim that for any $J\subseteq J'\subseteq I$ where $J$ is finite, 
+        $$\Pr\left[\bigcap_{i\in J'}E_i\right] = \prod_{i\in J'}\Pr[E_i]$$
+        for any choice of $E_i\in\sigma(\mathcal{E}_i)$ if $i\in J$ and
+        $E_i\in\mathcal{E}_i$ if $i\in J'\setminus J$.
         
-        % First, we claim that for any $J\subseteq J'\subseteq I$ where $J$ is finite, 
-        % $$\Pr\left[\bigcap_{i\in J'}E_i\right] = \prod_{i\in J'}\Pr[E_i]$$
-        % for any choice of $E_i\in\sigma(\mathcal{E}_i)$ if $i\in J$ and
-        % $E_i\in\mathcal{E}_i$ if $i\in J'\setminus J$.
-        
-        % We shall prove the above claim by induction on $|J|$. If $|J|=0$, then the claim is true as $(\mathcal{E}_i)_{i\in I}$ is independent. Now assume that the claim is true for all $J\subseteq I$ with $|J|=n$ and all finite $J'\supseteq J$. Fix such a $J$. Let $j\in I\setminus J$. Define $\tilde J=J\cup\{j\}$ and choose some $J'\supseteq\tilde J$. We shall show that the claim is true if we replace $J$ with $\tilde J$, thus proving the inductive step.
+        We shall prove the above claim by induction on $|J|$. If $|J|=0$, then the claim is true as $(\mathcal{E}_i)_{i\in I}$ is independent. Now assume that the claim is true for all $J\subseteq I$ with $|J|=n$ and all finite $J'\supseteq J$. Fix such a $J$. Let $j\in I\setminus J$. Define $\tilde J=J\cup\{j\}$ and choose some $J'\supseteq\tilde J$. We shall show that the claim is true if we replace $J$ with $\tilde J$, thus proving the inductive step.
     
-        % Fix $E_i\in\sigma(\mathcal{E}_i)$ for each $i\in J$ and $E_i\in\mathcal{E}_i$ for each $i\in J'\setminus\tilde J$. Consider measures $\mu,\nu$ on $(\Omega,\mathcal{A})$ such that
-        % \begin{align*}
-        %     \mu &: E_j\mapsto \Pr\left[\bigcap_{i\in J'}E_i\right] \\
-        %     \nu &: E_j\mapsto \prod_{i\in J'}\Pr[E_i]
-        % \end{align*}
-        % By the induction hypothesis, $\mu(E_j)=\nu(E_j)$ for all $E_j\in\mathcal{E}_j\cup\{\emptyset,\Omega\}$. As $\mathcal{E}_j\cup\{\emptyset\}$ is $\cap$-closed, \ref{uniquely defined by base pi sys} implies that $\mu(E_j)=\nu(E_j)$ for all $E_j\in\sigma(\mathcal{E}_j)$.
+        Fix $E_i\in\sigma(\mathcal{E}_i)$ for each $i\in J$ and $E_i\in\mathcal{E}_i$ for each $i\in J'\setminus\tilde J$. Consider measures $\mu,\nu$ on $(\Omega,\mathcal{A})$ such that
+        \begin{align*}
+            \mu &: E_j\mapsto \Pr\left[\bigcap_{i\in J'}E_i\right] \\
+            \nu &: E_j\mapsto \prod_{i\in J'}\Pr[E_i]
+        \end{align*}
+        By the induction hypothesis, $\mu(E_j)=\nu(E_j)$ for all $E_j\in\mathcal{E}_j\cup\{\emptyset,\Omega\}$. As $\mathcal{E}_j\cup\{\emptyset\}$ is $\cap$-closed, \ref{uniquely defined by base pi sys} implies that $\mu(E_j)=\nu(E_j)$ for all $E_j\in\sigma(\mathcal{E}_j)$.
         
-        % This proves our claim. Setting $J=J'$ yields the required result.
+        This proves our claim. Setting $J=J'$ yields the required result.
     
     \end{enumerate}
 \end{proof}
