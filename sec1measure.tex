@@ -524,6 +524,14 @@ In this case, we write $X:(\Omega,\mathcal{A})\to(\Omega',\mathcal{A}')$.
     Let $(\Omega,\mathcal{A})$ and $(\Omega',\mathcal{A}')$ be measurable spaces and $X:\Omega\to\Omega'$ be a map. Let $\mathcal{E}'\subseteq\mathcal{A}'$ be a class of sets. Then $X$ is $\mathcal{A}$-$\sigma(\mathcal{E}')$ measurable if and only if $X^{-1}(\mathcal{E}')\in\mathcal{A}$. If in particular $\sigma(\mathcal{E}')=\mathcal{A}'$, then $X$ is $\mathcal{A}-\mathcal{A}'$-measurable if and only if $X^{-1}(\mathcal{E}')\subseteq\mathcal{A}'$.
 \end{corollary}
 
+\begin{theorem}
+        Let $(\Omega,\mathcal{A})$, $(\Omega',\mathcal{A}')$, and $(\Omega'',\mathcal{A}'')$ be measurable spaces and let $X:\Omega\to\Omega'$ and $X':\Omega'\to\Omega''$ be measurable. Then $Y=X'\circ X:\Omega\to\Omega''$ is $\mathcal{A}-\mathcal{A}''$-measurable.
+\end{theorem}
+\begin{proof}
+    This is due to the fact that
+    $$Y^{-1}(\mathcal{A}'')\subseteq X^{-1}((X^{-1})(\mathcal{A}''))\subseteq X^{-1}(\mathcal{A}')\subseteq \mathcal{A}.$$
+\end{proof}
+
 \subsection{The Measure Extension Theorem}
 
 \begin{lemma}
