@@ -140,12 +140,15 @@ We now give several important examples of random variables that we shall encount
     $$\textbf{P}[X=n]=p(1-p)^n.$$
     Then $\textbf{P}_X$ is called the \textit{geometric distribution with parameter $p$} and is denoted $\gamma_p$ or $b_{1,p}^{-}$. More formally,
     $$\gamma_p=\sum_{n=0}^\infty p(1-p)^n\delta_n.$$
+    The geometric distribution $\gamma_p$ represents the waiting time for a success in a series of independent random experiments, each of which succeeds with a probability $p$.
     
     \item \textit{Negative Binomial Distribution.}
     
     Let $r>0$ and $p\in(0,1]$. We denote by
     $$b^{-}_{r,p}=\sum_{k=0}^\infty \binom{-r}{k}(-1)^kp^r(1-p)^k\delta_k$$
     the \textit{negative binomial distribution} or \textit{Pascal distribution} with parameters $r$ and $p$. Note that $r$ need not be an integer.
+    The negative binomial distribution $b^-_{r,p}$ represents the waiting time for the $r$th success in a series of independent random experiments, each of which succeeds with a probability $p$. Based on this intuition, we expect there to be some relation between the geometric distribution and the negative binomial distribution. We shall explain this relation later in the notes.
+    
     
     \item \textit{Poisson Distribution.}
     
