@@ -46,16 +46,12 @@ Given any probability space, we typically use the $\Pr$ or $\textbf{P}$ symbol t
 
 A probability measure is uniquely determined by its distribution function. (Why?)
 
-\begin{definition}[Random Variable]
-    Let $(\Omega,\mathcal{A},\textbf{P})$ be a probability space, $(\Omega',\mathcal{A}')$ a measurable space, and $X:\Omega\to\Omega'$ be measurable. Then
-    \begin{enumerate}[(i)]
-        \item $X$ is called a \textit{random variable} with values in $(\Omega',\mathcal{A}')$. If $(\Omega',\mathcal{A}')=(\mathbb{R},\mathcal{B}(\mathbb{R}))$, then $X$ is called a \textit{real random variable}.
-        
-        \item For $A'\in\mathcal{A}'$, we often denote
+\begin{fdef}[Random Variable]
+    Let $(\Omega,\mathcal{A},\textbf{P})$ be a probability space, $(\Omega',\mathcal{A}')$ a measurable space, and $X:\Omega\to\Omega'$ be measurable. Then $X$ is called a \textit{random variable} with values in $(\Omega',\mathcal{A}')$. If $(\Omega',\mathcal{A}') = (\mathbb{R},\mathcal{B}(\mathbb{R}))$, then $X$ is called a \textit{real random variable}. For $A'\in\mathcal{A}'$, we often denote
         $$\textbf{P}[X^{-1}(A')]\text{ as }\textbf{P}[X\in A']\text{ and } X^{-1}(A')\text{ as }\{X\in A'\}.$$
-        In particular, we let $\{X\geq 0\}=X^{-1}([0,\infty))$ and define $\{X\leq b\}$ and other terms similarly.
-    \end{enumerate}
-\end{definition}
+    In particular, we let $\{X\geq 0\}=X^{-1}([0,\infty))$ and define $\{X\leq b\}$ and other terms similarly.
+\end{fdef}
+
 
 As we shall primarily deal with real random variables in our study of probability, we often drop the ``real" and refer to them as just random variables.
 
@@ -102,6 +98,7 @@ Note that the above implies that there is a bijection between probability distri
 It is often easier to describe continuous probability distributions either in terms of their density or the corresponding probability distribution function. For example, if a random variable corresponds to picking a number uniformly randomly from $[0,1]$, then its density function is uniformly equal to $1$.
 
 \subsection{Important Examples of Random Variables}
+\label{examples of random variables}
 
 We now give several important examples of random variables that we shall encounter several times in our study of probability.
 

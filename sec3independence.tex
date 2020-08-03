@@ -85,14 +85,14 @@ We leave the proof of the above to the reader.
 
 Now, recall the limit superior defined in \cref{defLimes}. The limit superior represents the event that a particular event occurs an infinite amount of times (for example, the event that we roll a $4$ an infinite number of times when we roll a die a countably infinite number of times). This is formalized in the following.
 
-\begin{theorem}[Borel-Cantelli Lemma]
+\begin{ftheo}[Borel-Cantelli Lemma]
 \label{borelCantelliLemma}
     Let $A_1,A_2,\ldots$ be events and let $A^*=\limsup_{n\to\infty} A_n$. Then
     \begin{enumerate}[(a)]
         \item If $\sum_{n=1}^\infty \Pr[A_n]<\infty$, $\Pr[A^*]=0$.
         \item If $(A_n)_{n\in\mathbb{N}}$ is independent and $\sum_{n=1}^\infty \Pr[A_n]=\infty$, then $\Pr[A^*]=1$.
     \end{enumerate}
-\end{theorem}
+\end{ftheo}
 \begin{proof}
     By \cref{tripledoubleEquivalence}, $\textbf{P}$ is upper semicontinuous, lower semicontinuous and $\sigma$-subadditive.
     \begin{enumerate}[(a)]
@@ -119,7 +119,7 @@ Now, recall the limit superior defined in \cref{defLimes}. The limit superior re
     \end{enumerate}
 \end{proof}
 
-The reader may verify using the Borel-Cantelli Lemma that if we roll a die an infinite number of times, the probability of rolling a four an infinite number of times is $1$ by considering the events $A_n = \{\omega\in\Omega:\omega_n=4\}$ for each $n\in\mathbb{N}$ where $\Omega=[6]^\mathbb{N}$.
+A saying the reader might have come across is that if a monkey is left with a typewriter for an infinite amount of time, it will eventually type the complete works of Shakespeare. This is in fact a consequence of the Borel-Cantelli Lemma, and is often referred to as the \href{https://en.wikipedia.org/wiki/Infinite_monkey_theorem}{Infinite Monkey Theorem}!
 
 \vspace{2mm}
 We now extend the definition of independence of a family of events as follows.
@@ -276,7 +276,7 @@ Thus $\Poi_\lambda * \Poi_\mu = \Poi_{\lambda+\mu}$.
 
 \subsection{Kolmogorov's \texorpdfstring{$0$}{TEXT}-\texorpdfstring{$1$}{TEXT} Law}
 
-The Borel-Cantelli Lemma \ref{borelCantelliLemma} was an example of a so-called $0-1$ law. In this subsection, we study another such $0$-$1$ law.
+The \hyperref[borelCantelliLemma]{Borel-Cantelli Lemma} was an example of a so-called $0-1$ law. In this subsection, we study another such $0$-$1$ law.
 
 \begin{definition}[Tail $\sigma$-algebra]
     Let $I$ be a countably infinite index set and $(\mathcal{A}_i)_{i\in I}$ be a family of $\sigma$-algebras. Then
@@ -332,10 +332,10 @@ are $\mathcal{T}((X_n)_{n\in\mathbb{N}})$-measurable.
 % $$X_*=\liminf_{n\to\infty}\frac{1}{n}\sum_{i=1}^n X_i=\liminf_{n\to\infty}\frac{1}{n}\sum_{i=n_0}^n X_i$$
 % is $(\sigma((X_n)_{n\geq n_0}))$-measurable. 
 
-\begin{theorem}[Kolmogorov's $0$-$1$ Law]
+\begin{ftheo}[Kolmogorov's $0$-$1$ Law]
     Let $I$ be a countable infinite index set and $((\mathcal{A}_i)_{i\in I})$ be an independent family of $\sigma$-algebras. Then the tail $\sigma$-algebra is $\textbf{P}$-trivial, that is,
     $$\Pr[A]\in\{0,1\}\text{ for any }A\in\mathcal{T}((\mathcal{A}_i)_{i\in I}).$$
-\end{theorem}
+\end{ftheo}
 \begin{proof}
     Assume w.l.o.g. that $I=\mathbb{N}$. For each $i\in\mathbb{N}$, let
     $$\mathcal{F}_n = \left\{\bigcap_{i=1}^n A_k: A_j\in\mathcal{A}_j\text{ for each }j\in[n]\right\}.$$
@@ -361,7 +361,7 @@ are $\mathcal{T}((X_n)_{n\in\mathbb{N}})$-measurable.
     $$\Pr\left[\limsup_{n\to\infty} A_n\right]\text{ and }\Pr\left[\liminf_{n\to\infty} A_n\right]\text{ are in }\{0,1\}.$$
 \end{corollary}
 
-The above can be inferred from the fact that the $\limsup$ and $\liminf$ lie in the tail $\sigma$-algebra. It also follows from the Borel-Cantelli Lemma \ref{borelCantelliLemma}.
+The above can be inferred from the fact that the $\limsup$ and $\liminf$ lie in the tail $\sigma$-algebra. It also follows from the \hyperref[borelCantelliLemma]{Borel-Cantelli Lemma}.
 
 \begin{corollary}
     Let $(X_n)_{n\in\mathbb{N}}$ be an independent family of $\overline{\mathbb{R}}$-valued random variables. Then $X_*=\liminf_{n\to\infty}X_n$ and $X^*=\limsup_{n\to\infty} X_n$ are almost surely constant, that is, there exist $x_*,x^*\in\overline{\mathbb{R}}$ such that $\Pr[X_*=x_*]=1$ and $\Pr[X^*=x^*]=1$.

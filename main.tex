@@ -1,6 +1,6 @@
 \documentclass{article}
 
-\title{Probability Theory}
+\title{Probability and Measure Theory}
 \author{Amit Rajaraman}
 \date{Summer 2020}
 
@@ -13,6 +13,11 @@
 \usepackage{tikz}
 \usepackage{cleveref}
 \usetikzlibrary{arrows}
+\usepackage{mathtools}
+\usepackage{mdframed}
+\usepackage{doi}
+\usepackage[square, numbers]{natbib}
+
 
 \usepackage{titlesec}
 \titleformat{\section}[block]{\sffamily\Large\filcenter\bfseries}{\S\thesection.}{0.25cm}{\Large}
@@ -39,13 +44,23 @@
 \newcommand{\Poi}{\operatorname{Poi}}
 \renewcommand{\d}[1]{\ensuremath{\operatorname{d}\!{#1}}}
 \mathchardef\mhyphen="2D
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\expec}{\textbf{E}}
+\newcommand{\Var}{\operatorname{\textbf{Var}}}
+\newcommand{\Cov}{\operatorname{\textbf{Cov}}}
 
 \numberwithin{equation}{section}
 \theoremstyle{definition}
 \newtheorem{theorem}{Theorem}
+\newenvironment{ftheo}
+  {\begin{mdframed}\begin{theorem}}
+  {\end{theorem}\end{mdframed}}
 \newtheorem{lemma}[theorem]{Lemma}
 \newtheorem{corollary}[theorem]{Corollary}
 \newtheorem{definition}{Definition}
+\newenvironment{fdef}
+  {\begin{mdframed}\begin{definition}}
+  {\end{definition}\end{mdframed}}
 \numberwithin{definition}{section}
 \numberwithin{theorem}{section}
 \newtheorem{exercise}{Exercise}
@@ -62,6 +77,10 @@
 
 \setcounter {section}{-1}
 
+\begin{center}
+    We primarily use ``Probability Theory: A Comprehensive Course"\cite{klenke} by Achim Klenke as reference for this course
+\end{center}
+
 \tableofcontents
 \clearpage
 
@@ -70,8 +89,10 @@
 \input{sec2intro}
 \input{sec3independence}
 \input{sec4generatingFuncs}
+\input{sec5integrals}
+\input{sec6moments}
 
-\bibliographystyle{plain}   
+\bibliographystyle{plainnat}   
 \bibliography{references}
 
 \end{document}

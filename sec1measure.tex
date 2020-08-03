@@ -461,6 +461,7 @@ For example, if $A_n=\left(-\frac{1}{n},\frac{1}{n}\right)$ for $n\in\mathbb{N}$
 \end{enumerate}
 \end{definition}
 
+
 \subsection{Measurable Maps}
 
 In measure theory, the homomorphisms (structure-preserving maps between objects) are studied as measurable maps.
@@ -521,6 +522,7 @@ In this case, we write $X:(\Omega,\mathcal{A})\to(\Omega',\mathcal{A}')$.
 \end{proof}
 
 \begin{corollary}
+\label{measurable if generator inv}
     Let $(\Omega,\mathcal{A})$ and $(\Omega',\mathcal{A}')$ be measurable spaces and $X:\Omega\to\Omega'$ be a map. Let $\mathcal{E}'\subseteq\mathcal{A}'$ be a class of sets. Then $X$ is $\mathcal{A}$-$\sigma(\mathcal{E}')$ measurable if and only if $X^{-1}(\mathcal{E}')\in\mathcal{A}$. If in particular $\sigma(\mathcal{E}')=\mathcal{A}'$, then $X$ is $\mathcal{A}-\mathcal{A}'$-measurable if and only if $X^{-1}(\mathcal{E}')\subseteq\mathcal{A}'$.
 \end{corollary}
 
@@ -532,7 +534,60 @@ In this case, we write $X:(\Omega,\mathcal{A})\to(\Omega',\mathcal{A}')$.
     $$Y^{-1}(\mathcal{A}'')\subseteq X^{-1}((X^{-1})(\mathcal{A}''))\subseteq X^{-1}(\mathcal{A}')\subseteq \mathcal{A}.$$
 \end{proof}
 
-\subsection{The Measure Extension Theorem}
+The above theorem just states that the composition of two measurable maps is measurable.
+
+\begin{theorem}[Measurability of Continuous Maps]
+    Let $(\Omega,\tau)$ and $(\Omega',\tau')$ be topological spaces and let $f:\Omega\to\Omega'$ be a continuous map. Then $f$ is $\mathcal{B}(\Omega)-\mathcal{B}(\Omega')$-measurable.
+\end{theorem}
+\begin{proof}
+    As $\mathcal{B}(\Omega')=\sigma(\tau')$, by \cref{measurable if generator inv} it is enough to show that $f^{-1}(A')\in\sigma(\tau)$ for all $A'\in\tau'$. However, since $f$ is continuous, $f^{-1}(A')\in\tau$ for all $A'\in\tau'$ so the result follows.
+\end{proof}
+
+\begin{theorem}
+    Let $X_1,X_2,\ldots$ be measurable maps $(\Omega,\mathcal{A})\to(\overline{\mathbb{R}}, \mathcal{B}(\overline{\mathbb{R}}))$. Then $\inf_{n\in\mathbb{N}}X_n$, $\sup_{n\in\mathbb{N}}X_n$, $\liminf_{n\in\mathbb{N}}X_n$, and $\limsup_{n\in\mathbb{N}}X_n$ are also measurable.
+\end{theorem}
+\begin{proof}
+    For any $x\in\overline{\mathbb{R}}$,
+    $$\left(\inf_{n\in\mathbb{N}}X_n\right)^{-1}([-\infty,x))=\bigcup_{n=1}^\infty (X_n)^{-1}([-\infty,x))\in\mathcal{A}.$$
+    The first part of the result follows by \cref{measurable if generator inv}. The proof for $\sup_{n\in\mathbb{N}}X_n$ is similar.
+    
+    For $\limsup_{n\in\mathbb{N}}$, consider the sequence $(Y_n)_{n\in\mathbb{N}}$ where $Y_n=\sup_{m\geq n}X_m$. Each $Y_m$ is measurable. Then since $\inf_{n\in\mathbb{N}}Y_m$ is measurable, the result follows.
+\end{proof}
+
+\begin{definition}[Simple Function]
+    Let $(\Omega,\mathcal{A})$ be a measurable space. A map $f:\Omega\to\mathbb{R}$ is called \textit{simple} if there exists some $n\in\mathbb{N}$, mutually disjoint sets $A_1,\ldots,A_n\in\mathcal{A}$, and $\alpha_1,\ldots,\alpha_n\in\mathbb{R}$ such that
+    $$f=\sum_{i=1}^n \alpha_i\indic_{A_i}.$$
+\end{definition}
+
+\begin{definition}
+    Let $f,f_1,f_2,\ldots$ be maps $\Omega\to\overline{\mathbb{R}}$ such that
+    $$f_1(\omega)\leq f_2(\omega)\leq\cdots\text{ and }\lim_{n\to\infty}f_n(\omega)=\omega\text{ for all }\omega\in\Omega.$$
+    We then write $f_n\uparrow f$. Similarly, we write $f_n\downarrow f$ if $(-f_n)\uparrow(-f)$.
+\end{definition}
+
+\begin{theorem}
+\label{measurable function simple sequence}
+    Let $(\Omega,\mathcal{A})$ be a measurable space and let $f:\Omega\to[0,\infty]$ be measurable. Then
+    \begin{enumerate}[(a)]
+        \item There exists a sequence $(f_n)_{n\in\mathbb{N}}$ of non-negative simple functions such that $f_n\uparrow f$.
+        \item There are measurable sets $A_1,A_2,\ldots\in\mathcal{A}$ and $\alpha_1,\alpha_2,\ldots\in[0,\infty)$ such that $f=\sum_{i=1}^n \alpha_i\indic_{A_i}$.
+    \end{enumerate}
+\end{theorem}
+\begin{proof}
+    ~
+    \begin{enumerate}[(a)]
+        \item For $n\in\mathbb{N}_0$, define
+        $$f_n=\min\{n, 2^{-n}\lfloor2^nf\rfloor\}.$$
+        Each $f_n$ is measurable. (Why?) Since it can take at most $n2^n+1$ distinct values, each $f_n$ is simple. Clearly, $f_n\uparrow f$.
+        
+        \item Let $f_n$ be the same as above. For $n\in\mathbb{N}$ and $i\in[2^n]$, define
+        $$B_{n,i}=\{\omega:f_n(\omega)-f_{n-1}(\omega)=i2^{-n}\}\text{ and }\beta_{n,i}=i2^{-n}.$$
+        Then $f_n-f_{n-1}=\sum_{i=1}^{2^n} \beta_{n,i}\indic_{B_{n,i}}$. Changing the enumeration from $(n,i)$ to $m$, we get some $(\alpha_m)_{m\in\mathbb{N}}$ and $(A_m)_{m\in\mathbb{N}}$ such that
+        $$f=f_0 + \sum_{n=1}^\infty(f_n-f_{n-1})=\sum_{m=1}^\infty \alpha_m\indic_{A_m}.$$
+    \end{enumerate}
+\end{proof}
+
+\subsection{Outer Measure}
 
 \begin{lemma}
 \label{uniquely defined by base pi sys}
@@ -709,6 +764,8 @@ In this case, we write $X:(\Omega,\mathcal{A})\to(\Omega',\mathcal{A}')$.
     Therefore, $A\in\mathcal{M}(\mu^*)$ and this completes the proof.
 \end{proof}
 
+\subsection{The Approximation and Extension Theorems}
+
 \begin{theorem}[Approximation Theorem for Measures]
 \label{Approximation Thm for Measures}
     Let $\mathcal{A}\subseteq 2^\Omega$ be a semiring and let $\mu$ be a measure on $\sigma(\mathcal{A})$ that is $\sigma$-finite on $\mathcal{A}$.
@@ -735,10 +792,10 @@ In this case, we write $X:(\Omega,\mathcal{A})\to(\Omega',\mathcal{A}')$.
 
 The following theorem allows us to ``extend" measures from a semiring to the $\sigma$-algebra generated by it. This allows us to define measures over an entire $\sigma$-algebra by defining its values over just a semiring that generates it.
 
-\begin{theorem}[Measure Extension Theorem]
+\begin{ftheo}[Measure Extension Theorem]
 \label{MeasureExtensionTh}
     Let $\mathcal{A}$ be a semiring and let $\mu:\mathcal{A}\to[0,\infty]$ be an additive, $\sigma$-subadditive and $\sigma$-finite set function with $\mu(\emptyset)=0$. Then there is a unique $\sigma$-finite measure $\tilde\mu:\sigma(\mathcal{A})\to[0,\infty]$ such that $\tilde\mu(A)=\mu(A)$ for all $A\in\mathcal{A}$.
-\end{theorem}
+\end{ftheo}
 \begin{proof}
     Since $\mathcal{A}$ is a $\pi$-system, if such a $\tilde\mu$ exists, it is uniquely defined due to \cref{uniquely defined by base pi sys}.
     
@@ -772,6 +829,8 @@ The following theorem allows us to ``extend" measures from a semiring to the $\s
     
     \cref{mu measurable iff leq} implies that $A\in\mathcal{M}(\mu^*)$, that is, $\mathcal{A}\subseteq\mathcal{M}(\mu^*)$. This in turn in implies that $\sigma(\mathcal{A})\subseteq\mathcal{M}(\mu^*)$. Define the required function by $\tilde\mu:\sigma(\mathcal{A})\to[0,\infty]$, $A\mapsto\mu^*(A)$. By \cref{outer measure is sig additive on M}, $\tilde\mu$ is $\sigma$-additive. Since $\mu$ is $\sigma$-finite, $\tilde\mu$ is $\sigma$-finite as well. This proves the result.
 \end{proof}
+
+\subsection{Important Examples of Measures}
 
 Now that we have the Measure Extension Theorem, we may introduce the Lebesgue-Stieltjes measure, a very useful measure on $(\mathbb{R},\mathcal{B}(\mathbb{R}))$, which is given as follows.
 
@@ -816,8 +875,7 @@ The measure that results when the function $F$ is equal to the identity function
     $\lambda^n$ is called the \textit{Lebesgue measure} on $(\mathbb{R}^n, \mathcal{B}(\mathbb{R}^n))$ or the \textit{Lebesgue-Borel measure}.
 \end{definition}
 
-\subsection{Miscellaneous}
-
+\vspace{2mm}
 Let $E$ be a finite nonempty set and $\Omega = E^\mathbb{N}$. If $\omega_1,\omega_2,\ldots,\omega_n\in E$, we define the following.
 $$[\omega_1,\omega_2,\ldots,\omega_n]=\{\omega'\in\Omega : \omega'_i=\omega_i\text{ for }i\in[n]\}.$$
 This represents the set of all sequences whose first $n$ elements are $\omega_1,\omega_2,\ldots,\omega_n$.
