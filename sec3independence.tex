@@ -132,7 +132,7 @@ We now extend the definition of independence of a family of events as follows.
 For example, if we roll a die an infinite number of times, for each $i\in\mathbb{N}$, consider the class of events given by $\mathcal{E}_i=\{\{\omega\in\Omega:\omega_i\in A\}:A\subseteq[6]\}$
 where $\Omega=[6]^\mathbb{N}$. Then the family $(\mathcal{E}_i)_{i\in I}$ is independent.
 
-\begin{theorem}
+\begin{ftheo}
 \label{independent set classes subset}
 ~
     Let $I$ be an index set and for each $i\in I$, let $\mathcal{E}_i\subseteq \mathcal{A}$. Then
@@ -141,9 +141,9 @@ where $\Omega=[6]^\mathbb{N}$. Then the family $(\mathcal{E}_i)_{i\in I}$ is ind
         
         \item If $(\mathcal{E}_i\cup\{\emptyset\})$ is $\cap$-closed for each $i$, then $(\mathcal{E}_i)_{i\in I}$ is independent if and only if $(\sigma(\mathcal{E}_i))_{i\in I}$ is independent.
         
-        % \item Let $K$ be an arbitrary set and let $(I_k)_{k\in K}$ be mutually disjoint subsets of $I$. If $(\mathcal{E}_i)_{i\in I}$ is independent, then $\left(\bigcup_{i\in I_k}\mathcal{E}_i\right)_{k\in K}$ is also independent.
+        \item Let $K$ be an arbitrary set and let $(I_k)_{k\in K}$ be mutually disjoint subsets of $I$. If $(\mathcal{E}_i)_{i\in I}$ is independent, then $\left(\bigcup_{i\in I_k}\mathcal{E}_i\right)_{k\in K}$ is also independent.
     \end{enumerate}
-\end{theorem}
+\end{ftheo}
 
 \begin{proof}
     ~
@@ -167,6 +167,8 @@ where $\Omega=[6]^\mathbb{N}$. Then the family $(\mathcal{E}_i)_{i\in I}$ is ind
         By the induction hypothesis, $\mu(E_j)=\nu(E_j)$ for all $E_j\in\mathcal{E}_j\cup\{\emptyset,\Omega\}$. As $\mathcal{E}_j\cup\{\emptyset\}$ is $\cap$-closed, \cref{uniquely defined by base pi sys} implies that $\mu(E_j)=\nu(E_j)$ for all $E_j\in\sigma(\mathcal{E}_j)$.
         
         This proves our claim. Setting $J=J'$ yields the required result.
+    
+        \item This is trivial as in \cref{independence of classes of events}, we only need to consider $J\subseteq I$ such that $J\cap I_k\leq 1$ for any $k\in K$.
     
     \end{enumerate}
 \end{proof}
@@ -229,18 +231,25 @@ For each $i\in I$, let $(\Omega_i',\mathcal{A}_i')$ be another measurable space 
     $$f_J(x) = \prod_{j\in J}f_{\{j\}}(x_j).$$
 \end{corollary}
 
-% \begin{theorem}
-%     Let $K$ be an arbitrary set and $I_k,k\in K$ be mutually disjoint sets. Define $I=\bigcup_{k\in K}I_k$. If a family $(X_i)_{i\in I}$ of random variables is independent, then the family of $\sigma$-algebras $(\bigcup_{i\in I_k}\sigma(X_i))_{k\in K}$ is independent.
-% \end{theorem}
-% \begin{proof}
+\begin{ftheo}
+\label{independent mutually disjoint set union}
+    Let $K$ be an arbitrary set and $I_k,k\in K$ be mutually disjoint sets. Define $I=\bigcup_{k\in K}I_k$. If a family $(X_i)_{i\in I}$ of random variables is independent, then the family of $\sigma$-algebras $(\bigcup_{i\in I_k}\sigma(X_i))_{k\in K}$ is independent.
+\end{ftheo}
+\begin{proof}
+    For $k\in K$, let
+    $$\mathcal{S}_k=\left\{\bigcap_{j\in I_k}A_j : A_j\in\sigma(X_j), |\{j\in I_k:A_k\neq\Omega\}|<\infty \right\}.$$
+    Note that $\mathcal{S}_k$ is a $\pi$-system and $\sigma(\mathcal{S}_k) = \sigma(X_j:j\in I_k)$. \Cref{independent set classes subset}(b) implies that we can just show that $(\mathcal{S}_k)_{k\in K}$ is independent and by \cref{independence of classes of events}, we can even assume that $K$ is finite.
     
-% \end{proof}
+    For each $k\in K$, let $B_k\in\mathcal{S}_k$ and $J_k\subseteq I_k$ be finite such that $B_k=\bigcap_{j\in J_k} A_j$ for some $A_j\in\sigma(X_j)$. Define $J=\bigcup_{k\in K} J_k$. Then
+    $$\Pr\left[\bigcap_{k\in K} B_k\right] = \Pr\left[\bigcap_{j\in J}A_j\right] = \prod_{j\in J}\Pr[A_j] = \prod_{k\in K}\Pr\left[\bigcap_{j\in J_k}A_j\right] = \prod_{k\in K}\Pr[B_k].$$
+\end{proof}
 
 \subsection{The Convolution}
 
 \begin{definition}
     Let $\mu$ and $\nu$ be probability measures on $(\mathbb{Z},2^\mathbb{Z})$. The \textit{convolution $(\mu * \nu)$} is defined as the probability measure on $(\mathbb{Z},2^\mathbb{Z})$ given by
     $$(\mu * \nu) (\{n\}) = \sum_{m=-\infty}^\infty \mu(\{m\})\nu(\{n-m\}).$$
+    
 \end{definition}
 
 We define the $n$th convolution power by $\mu^{*1}=\mu$ and $\mu^{*n}=\mu^{*(n-1)}*\mu$.
@@ -276,7 +285,7 @@ Thus $\Poi_\lambda * \Poi_\mu = \Poi_{\lambda+\mu}$.
 
 \subsection{Kolmogorov's \texorpdfstring{$0$}{TEXT}-\texorpdfstring{$1$}{TEXT} Law}
 
-The \hyperref[borelCantelliLemma]{Borel-Cantelli Lemma} was an example of a so-called $0-1$ law. In this subsection, we study another such $0$-$1$ law.
+The \hyperref[borelCantelliLemma]{Borel-Cantelli Lemma} was an example of a so-called $0$-$1$ law. In this subsection, we study another such $0$-$1$ law.
 
 \begin{definition}[Tail $\sigma$-algebra]
     Let $I$ be a countably infinite index set and $(\mathcal{A}_i)_{i\in I}$ be a family of $\sigma$-algebras. Then

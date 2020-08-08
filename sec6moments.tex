@@ -158,10 +158,10 @@ Breaking up the individual terms,
 
 The above is known as the \textit{Bienaym\'{e} formula}.
 
-\begin{theorem}[Cauchy-Schwarz Inequality]
+\begin{ftheo}[Cauchy-Schwarz Inequality]
     Let $X,Y\in\mathcal{L}^2(\textbf{P})$. Then
     $$(\Cov[X,Y])^2\leq \Var[X]\Var[Y].$$
-\end{theorem}
+\end{ftheo}
 \begin{proof}
     If $\Var[Y]=0$, the statement is trivial. If $\Var[Y]\neq 0$,
     \begin{align*}
@@ -280,6 +280,8 @@ Making this property more general, we define the following.
     \end{enumerate}
 \end{fdef}
 
+We sometimes abbreviate ``law of large numbers" to LLN.
+
 The weak law is equivalent to saying that $(\tilde{S}_n/n)_{n\in\mathbb{N}}$ converges in probability to the $0$ random variable and the strong law is equivalent to saying that $(\tilde{S}_n/n)_{n\in\mathbb{N}}$ converges almost surely to the $0$ random variable.
 
 \vspace{2mm}
@@ -294,6 +296,7 @@ On the other hand, the strong law says that almost surely, the sequence of \text
 Note that as a consequence, if $(X_n)_{n\in\mathbb{N}}$ satisfies the strong law of large numbers, it must also satisfy the weak law of large numbers.
 
 \begin{ftheo}
+\label{uncorr finite var wLLN}
     Let $X_1,\ldots,X_n\in\mathcal{L}^2(\textbf{P})$ be uncorrelated random variables with $V=\sup_{n\in\mathbb{N}}\Var[X_n]<\infty$. Then $(X_n)_{n\in\mathbb{N}}$ satisfies the weak law of large numbers. Further,
     $$\Pr\left[\left|\frac{1}{n}\tilde{S}_n\right|\geq\varepsilon\right]\leq \frac{V}{\varepsilon^2n}\text{ for all $n\in\mathbb{N}$}.$$
 \end{ftheo}
@@ -303,7 +306,7 @@ Note that as a consequence, if $(X_n)_{n\in\mathbb{N}}$ satisfies the strong law
     This shows how the more random variables we add, the more it ``concentrates" around the mean $0$.
     Now, by \hyperref[chebyshev inequality]{Chebyshev's inequality},
     $$\Pr\left[\left|\frac{1}{n}\tilde{S}_n\right|\geq\varepsilon\right]\leq \frac{V}{\varepsilon^2n}.$$
-    Taking the limit as $n\to\infty$ gives that $(X_n)_{n\in\mathbb{N}}$ satisfies the weak law of large numbers.
+    Taking the limit as $n\to\infty$ gives that $(X_n)_{n\in\mathbb{N}}$ satisfies the weak LLN.
 \end{proof}
 
 In general, if we wish to show the existence of an object that has some properties, we give a constructive proof. Equipped with probability now, we have a non-constructive method to prove the existence of something, commonly known as the probabilistic method of proof. We do this by considering some distribution over all objects, and showing that the probability of a randomly selected object having the required properties is non-zero, thus implying the existence of the required object.
@@ -372,7 +375,7 @@ The above inequalities are known as the \textit{Chernoff Bounds}.
 
 There are many versions of the Strong Law of Large Numbers, the one we present here is that given by Etemadi.
 
-Namely, if $X_1,X_2,\ldots\in\mathcal{L}^2(\textbf{P})$ are pairwise independent and identically distributed, then $(X_n)_{n\in\mathbb{N}}$ follows the strong law of large numbers.
+Namely, if $X_1,X_2,\ldots\in\mathcal{L}^2(\textbf{P})$ are pairwise independent and identically distributed, then $(X_n)_{n\in\mathbb{N}}$ follows the strong LLN.
 
 Before we prove this, we start with some lemmas.
 
@@ -444,7 +447,90 @@ We may now prove the main result of this subsection.
     
     This in turn gives that $\expec[T_{k_n}]/k_n\xrightarrow{n\to\infty}\expec[X_1]$ and therefore, 
     $$\lim_{n\to\infty}\frac{T_{n}}{n}=\lim_{n\to\infty}\frac{T_{k_n}}{k_n}=\expec[X_1]\text{ almost surely.}$$
-    Lemma \ref{prlem1etem} completes the proof.
+    \Cref{prlem1etem} completes the proof.
 \end{proof}
+
+\vspace{2mm}
+We now give an example of the applications of the above.
+
+Let $f\in\mathcal{L}^1([0,1])$ be a function  $[0,1]\to\mathbb{R}$ and say we want to evaluate $I=\int_0^1 f(x)\d x$. Let $X_1,X_2,\ldots$ be independent random variables uniformly distributed in $[0,1]$ and define
+$$\Hat{I}_n = \frac{1}{n}\sum_{i=1}^n f(X_i).$$
+The \hyperref[etemadi sLLN]{strong law of large numbers} implies that $\Hat{I}_n\xrightarrow{n\to\infty} I$ almost surely. This method of integration is known as \textit{Monte Carlo integration}.
+
+If $f$ is a sufficiently nice function, usual numerical methods tend to give better estimates. However, If $[0,1]$ is replaced with $G\subseteq\mathbb{R}^d$ for very large $d$, Monte Carlo integration tends to be useful. 
+
+\vspace{1mm}
+Note that although $\Hat{I}_n$ converges to $I$, we do not have an estimate of how fast it converges.
+
+\subsection{Speed of Convergence in the Strong Law of Large Numbers}
+
+We had discussed the speed of convergence in the weak LLN (\cref{uncorr finite var wLLN}).
+
+In the strong LLN, we get good estimates if we assume the existence of higher moments, such as the following result that can be seen as an analogue of the \hyperref[chebyshev inequality]{Chebyshev Inequality}.
+
+\begin{ftheo}[Kolmogorov's Inequality]
+\label{kolmogorov's inequality}
+    Let $n\in\mathbb{N}$ and $X_1,\ldots,X_n$ be independent random variables with $\expec[X_i]=0$ and $\Var[X_i]<\infty$ for all valid $i$. Let $S_k=X_1+\cdots+X_k$ for $k\in[n]$. Then for any $t>0$,
+    $$\Pr[\max\{S_k:k\in[n]\}\geq t] \leq \frac{\Var[S_n]}{t^2+\Var[S_n]}$$
+    and
+    $$\Pr[\max\{|S_k|:k\in[n]\}\geq t] \leq t^{-2}\Var[S_n].$$
+\end{ftheo}
+The latter equation in particular is referred to as Kolmogorov's Inequality.
+\begin{proof}
+    Let $\tau$ be the first time at which the partial sum exceeds $t$, that is,
+    $$\tau = \min\{k\in[n]:S_k\geq t\}.$$
+    and $A_k=\{\tau=k\}$ for each $k$. Further, let
+    $$A=\left\{\max\{S_k:k\in[n]\geq t\right\}=\biguplus_{i=1}^n A_k.$$
+    Fix some $c\geq 0$. Note that $(S_k+c)\indic_{A_k}$ is $\sigma(X_1,\ldots,X_k)$-measurable and $(S_n-S_k)$ is $\sigma(X_{k+1},\ldots,X_n)$-measurable. \Cref{independent mutually disjoint set union} implies that these two random variables are independent and thus,
+    $$\expec[(S_k+c)\indic_{A_k}(S_n-S_k)]=\expec[(S_k+c)\indic_{A_k}]\expec[S_n-S_k]=0.$$
+    We now have
+    \begin{align*}
+        \Var[S_n] + c^2 &= \expec[(S_n+c)^2] \\
+        &\geq \sum_{k\in[n]}\expec[(S_n+c)^2\indic_{A_k}] \\
+        &= \sum_{k\in[n]}\expec[\left((S_k+c)^2 + 2(S_k+c)(S_n-S_k)+(S_n-S_k)^2\right)\indic_{A_k}] \\
+        &= \sum_{k\in[n]} \expec[\left((S_k+c)^2+(S_n-S_k)^2\right)\indic_{A_k}] \\
+        &\geq \sum_{k\in[n]} \expec[(S_k+c)^2\indic_{A_k}] \\
+        &\geq \expec[(t+c)^2\indic_{A}] = (t+c)^2\Pr[A].
+    \end{align*}
+    
+    That is,
+    $$\Pr[A]\leq \frac{\Var[S_n]+c^2}{(t+c)^2}.$$
+    Setting $c=\Var[S_n]/t$ gives the first inequality.
+    
+    \vspace{2mm}
+    For the second inequality, let
+    $$\tilde{\tau}=\min\{k\in[n]:|S_k|\geq t\},$$
+    $\tilde{A}_k=\{\tilde{\tau}=k\}$ and $\tilde{A}=\{\tilde{\tau}\leq n\}$. Repeating the steps similar to the first inequality but with $c=0$ gives the required result.
+\end{proof}
+
+Now that we have Kolmogorov's inequality, we may establish some more results.
+
+\begin{theorem}
+    Let $X_1,X_2,\ldots$ be independent random variables with $\expec[X_n]=0$ for any $n\in\mathbb{N}$ and $V=\sup_{n\in\mathbb{N}}\Var[X_n]<\infty$. Then for any $\varepsilon>0$,
+    $$\limsup_{n\to\infty} \frac{|S_n|}{n^{1/2}(\log(n))^{\varepsilon+(1/2)}}=0\text{ almost surely.}$$
+\end{theorem}
+\begin{proof}
+    Let $l(n)=n^{1/2}(\log(n))^{\varepsilon+(1/2)}$ and $k_n=2^n$ for $n\in\mathbb{N}$. For sufficiently large $n$ and $k\in\mathbb{N}$ such that $k_{n-1}\leq k\leq k_n$, $|S_k|/l(k)\leq 2|S_k|/l(k_n)$  (Why?). It then suffices to show that for any $\delta>0$,
+    $$\limsup_{n\to\infty} \frac{\max\{|S_k|:k\leq k_n\}}{l(k_n)} \leq \delta\text{ almost surely.}$$
+    For each $n\in\mathbb{N}$, define $A_{n,\delta}=\{\max\{|S_k|:k\leq k_n\} > \delta l(k_n)\}$
+    
+    Then by \hyperref[kolmogorov's inequality]{Kolmogorov's inequality},
+    
+    \begin{align*}
+        \sum_{n=1}^\infty \Pr[A_{n,\delta}] &\leq \sum_{n=1}^\infty Vk_n(\delta l(k_n))^{-2} \\
+        &= \frac{V}{\delta^2(\log 2)^{1+2\varepsilon}}\sum_{n=1}^\infty \frac{1}{n^{1+2\varepsilon}} < \infty.
+    \end{align*}
+    Applying the \hyperref[borelCantelliLemma]{Borel-Cantelli Lemma} on $(A_{n,\delta})_{n\in\mathbb{N}}$ gives that $\Pr\left[\limsup_{n\to\infty}A_{n,\delta}\right]=0$, which leads to the result. 
+\end{proof}
+
+Readers who are familiar with complexity theory can think of this as just saying that $|S_n|=o\left(n^{1/2}(\log (n))^{\varepsilon+(1/2)}\right)$.
+
+\vspace{2mm}
+
+A stronger result that we do not prove here states that for iid square integrable centered random variables $X_1,X_2,\ldots$,
+$$\limsup_{n\to\infty} \frac{|S_n|}{\sqrt{2n\Var[X_1]\log(\log(n))}}=1\text{ almost surely.}$$
+This result is significantly stronger as it says that $|S_n|=\Theta\left(\sqrt{2n\Var[X_1]\log(\log(n))}\right)$.
+
+
 
 \clearpage
